@@ -1,17 +1,20 @@
 import React from 'react';
-const Hello = () => {
+const Hello = (props) => {
     return (
         <div>
-            <p>Hello world</p>
+            Hello {props.name}, you are {props.age} years old
         </div>
     );
 };
 
 const App = () => {
+    const name = 'Dennis';
+    const age = 35;
+
     return (
         <div>
             <h1>Greetings</h1>
-            <Hello />
+            <Hello name={name} age={age + 10} />
         </div>
     );
 };
