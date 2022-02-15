@@ -2,32 +2,36 @@ const Header = (props) => {
     return <h1>{props.course}</h1>;
 };
 
-const Content = ({ parts }) => {
+const Part = (props) => {
     return (
-        <>
-            {parts.map((x, y) => {
-                <p key={y}>
-                    {x.part} {x.exercises}
-                </p>;
-            })}
-        </>
+        <p>
+            {props.part} {props.exercises}
+        </p>
     );
 };
 
-/*
-const Total = () => {
+const Content = () => {
+    return (
+        <div>
+            <Part part={'Fundamentals of React'} exercises={10} />
+            <Part part={'Using props to pass data'} exercises={7} />
+            <Part part={'State  of a component'} exercises={14} />
+        </div>
+    );
+};
+
+const Total = ({ parts }) => {
+    let x = [];
+    parts.map((a) => x.push(a.exercises));
+
+    const y = x.reduce((z, b) => z + b, 0);
+
     return (
         <>
-            <p>Number of exercises {exercises1 + exercises2 + exercises3}</p>
-            {parts.map((x, y) => {
-                <p key={y}>
-                    {parts.part} {parts.exercises}
-                </p>;
-            })}
+            <p>Number of exercises {y}</p>
         </>
     );
 };
-*/
 
 const App = () => {
     const parts = [
@@ -51,6 +55,7 @@ const App = () => {
         <div>
             <Header course='Half Stack application development' />
             <Content parts={parts} />
+            <Total parts={parts} />
         </div>
     );
 };
